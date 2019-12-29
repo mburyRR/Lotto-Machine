@@ -1,17 +1,28 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { withTheme } from 'react-native-elements';
 import { Bars } from 'react-native-loader';
+import styled from 'styled-components';
 
-import styles from './Loader.styles.android';
+
+const LoaderElement = styled(View)`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+`;
+
+const Animation = styled(Bars).attrs({
+    color: theme.color.primary,
+    size: 19
+})``;
+
 
 const Loader = () => (
-    <View style={styles.background}>
-        <Bars
-            size={19}
-            color={theme.color.primary}
-        />
-    </View>
+    <LoaderElement>
+        <Animation/>
+    </LoaderElement>
 );
 
 export default withTheme(Loader);

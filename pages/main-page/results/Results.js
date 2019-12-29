@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
-import { compose } from 'redux'
-import { connect } from 'react-redux';
 import { View, ScrollView } from 'react-native';
 import { withTheme, Card } from 'react-native-elements';
+import styled from 'styled-components';
 
 import I18n from '../../../i18n/i18n';
-import styles from './Results.styles.android';
+
+
+const ResultPage = styled(View)`
+  background-color: ${({ theme }) => theme.background.default};
+`;
+
+const LastResults = styled(Card).attrs({
+  containerStyle: {
+
+  },
+  titleStyle: {
+
+  }
+})``;
+
+const UserResults = styled(Card).attrs({
+  containerStyle: {
+
+  },
+  titleStyle: {
+    
+  }
+})``;
 
 
 class Results extends Component {
@@ -22,34 +43,28 @@ class Results extends Component {
 
   render() {
     return (
-      <View style={styles.view}>
+      <ResultPage>
         <ScrollView>
-          <Card
-            containerStyle={styles.cardGenerator}
+          <LastResults
             title={I18n.t('RESULTS.resultsTitle')}
-            titleStyle={styles.title}
           >
             {/*
               TODO:
                 1. Add current result info with data finder
             */}
-          </Card>
-          <Card
-            containerStyle={styles.cardHistorical}
+          </LastResults>
+          <UserResults
             title={I18n.t('RESULTS.userResultsTitle')}
-            titleStyle={styles.title}
           >
             {/*
               TODO:
                 1. Add user last results with checked statuses
             */}
-          </Card>
+          </UserResults>
         </ScrollView>
-      </View>
+      </ResultPage>
     );
   }
 }
 
-export default compose(
-  withTheme
-)(Results);
+export default withTheme(Results);

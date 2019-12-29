@@ -12,7 +12,7 @@ import rootReducer from '../store/reducer';
  *  it's needed to access to the server via computer IP Address, not 'localhost')
  */
 const client = axios.create({
-    baseURL: 'http://192.168.254.110:4000',
+    baseURL: 'xyz',
     responseType: 'json'
 });
 
