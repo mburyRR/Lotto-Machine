@@ -3,13 +3,19 @@ import { View, ScrollView } from 'react-native';
 import { withTheme } from 'react-native-elements';
 import { compose } from 'redux'
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { getGameList, getUserProfile } from '../../../store/reducer';
 import I18n from '../../../i18n/i18n';
 import Loader from '../../../components/loader/Loader';
-import GeneratorMachine from '../../../containers/generator-machine/GeneratorMachine';
+import NumbersGenerator from '../../../containers/numbers-generator/NumbersGenerator';
 import LastGenerated from '../../../containers/last-generated/LastGenerated';
-import styles from './Generator.styles.android';
+
+
+
+const GeneratorPage = styled(View)`
+   flex: 1;
+`;
 
 
 class Generator extends Component {
@@ -41,10 +47,10 @@ class Generator extends Component {
     if (loadingGames || loadingProfile) return <Loader/>;
 
     return (
-      <View style={styles.view}>
+      <GeneratorPage>
         <ScrollView>
           {games
-            ? <GeneratorMachine games={games}/>
+            ? <NumbersGenerator games={games}/>
             : null
           }
           {userProfile
@@ -52,7 +58,7 @@ class Generator extends Component {
             : null
           }
         </ScrollView>
-      </View>
+      </GeneratorPage>
     );
   }
 }

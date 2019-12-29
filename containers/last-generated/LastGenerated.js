@@ -1,18 +1,28 @@
 import React from 'react';
 import { withTheme, Card } from 'react-native-elements';
+import styled from 'styled-components';
 
 import I18n from '../../i18n/i18n';
 import LastGeneratedList from '../../components/last-generated-list/LastGeneratedList';
-import styles from './LastGenerated.styles.android';
+
+
+const LastGeneratedCard = styled(Card).attrs({
+  containerStyle: {
+    marginTop: 20,
+    marginBottom: 20
+  },
+  titleStyle: {
+    color: theme.color.default,
+    textTransform: 'uppercase'
+  }
+})``;
 
 
 const LastGenerated = ({ userProfile }) =>
-  <Card
-    containerStyle={styles.cardHistorical}
+  <LastGeneratedCard
     title={I18n.t('GENERATOR.lastGeneratedTitle')}
-    titleStyle={styles.title}
   >
     <LastGeneratedList userProfile={userProfile}/>
-  </Card>
+  </LastGeneratedCard>
  
 export default withTheme(LastGenerated);
