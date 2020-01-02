@@ -5,13 +5,35 @@
         "tslint-react",
         "tslint-config-prettier"
     ],
-    "jsRules": {},
+    "jsRules": {
+        "max-line-length": {
+            "options": [120]
+        }
+    },
     "rules": {
         "interface-name": false,
+        "interface-over-type-literal": false,
         "jsx-no-lambda": false,
+        "class-name": true,
         "object-literal-sort-keys": false,
+        "curly": [true, "ignore-same-line"],
+        "no-var-requires": true,
+        "no-empty-interface": true,
         "quotemark": [true, "single", "jsx-single"],
         "member-access": [true, "no-public"],
-        "ordered-imports": [false]
+        "ordered-imports": [false],
+        "no-async-without-await": true,
+        "no-empty": [true, "allow-empty-catch"],
+        "no-unused-expression": [true, "allow-fast-null-checks"],
+        "no-this-assignment": [
+            true, 
+            {
+                "allowed-names": ["^self$"],
+                "allow-destructuring": true
+            }
+        ],
+        "max-line-length": {
+            "options": [120]
+        }
     }
   }

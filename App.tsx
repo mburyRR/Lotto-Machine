@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import store from './store/configureStore.js';
+import store from './store/configureStore';
 import theme from './themes/theme';
 
 import Routes from './routes/Routes';

@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { withTheme, Button } from 'react-native-elements';
 import styled from 'styled-components';
 
+import { Navigation, Theme } from '../../common/types';
 import I18n from '../../i18n/i18n';
 
 
@@ -30,15 +31,19 @@ const IntroPageButtonLabel = styled(Text)`
   font-size: 18px;
 `;
 
-const IntroPageButton = styled(Button).attrs({
-  buttonStyle: {
-    width: 190,
-    backgroundColor: theme.color.default
-  }
-})``;
+const IntroPageButton = styled(Button).attrs(
+  ({theme}: Theme) => ({
+    buttonStyle: {
+      width: 190,
+      backgroundColor: theme.color.default
+    }
+  })
+)``;
 
 
-const StartPage = ({ navigation }) => (
+const StartPage: React.FC<Navigation> = ({
+  navigation
+}) => (
   <IntroPage>
     <IntroPageTitle>
       {I18n.t('START.title')}

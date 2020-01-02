@@ -3,11 +3,12 @@ import { View, ScrollView } from 'react-native';
 import { withTheme, Card } from 'react-native-elements';
 import styled from 'styled-components';
 
+import { Theme } from '../../../common/types';
 import I18n from '../../../i18n/i18n';
 
 
 const ResultPage = styled(View)`
-  background-color: ${({ theme }) => theme.background.default};
+  background-color: ${({theme}: Theme) => theme.background.default};
 `;
 
 const LastResults = styled(Card).attrs({
@@ -28,9 +29,13 @@ const UserResults = styled(Card).attrs({
   }
 })``;
 
+interface Props{
+  theme: Theme;
+  updateTheme: any;
+  replaceTheme: any;
+}
 
-class Results extends Component {
-
+class Results extends Component<Props> {
   /**
    * navigationOptions:
    *  - static property for screen component which is either

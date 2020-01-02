@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
-import { withTheme } from 'react-native-elements';
-import { compose } from 'redux'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { getGameList, getUserProfile } from '../../../store/reducer';
+import { getGameList, getUserStats } from '../../../store/reducer';
+import { GeneratorProps } from '../../../common/types';
 import I18n from '../../../i18n/i18n';
 import Loader from '../../../components/loader/Loader';
-import NumbersGenerator from '../../../containers/numbers-generator/NumbersGenerator';
-import LastGenerated from '../../../containers/last-generated/LastGenerated';
-
+import NumbersGenerator from './numbers-generator/NumbersGenerator';
+import LastGenerated from './last-generated/LastGenerated';
 
 
 const GeneratorPage = styled(View)`
-   flex: 1;
+  flex: 1;
 `;
 
-
-class Generator extends Component {
+class Generator extends Component<GeneratorProps> {
 
   /**
    * navigationOptions:
@@ -38,44 +35,50 @@ class Generator extends Component {
    */
   componentDidMount() {
     this.props.getGameList();
-    this.props.getUserProfile('Johny', '', {limit: 4, sort: 'asc'});
+    this.props.getUserStats('Johny', '', {limit: 4, sort: 'asc'});
   }
 
   render() {
-    const { games, userProfile, loadingGames, loadingProfile } = this.props;
+    const {
+      games,
+      userStats,
+      loadingGames,
+      loadingStats
+    } = this.props;
 
-    if (loadingGames || loadingProfile) return <Loader/>;
+    if (loadingGames || loadingStats) return <Loader/>;
+
+    console.log(games)
 
     return (
       <GeneratorPage>
         <ScrollView>
-          {games
-            ? <NumbersGenerator games={games}/>
-            : null
-          }
-          {userProfile
-            ? <LastGenerated userProfile={userProfile}/>
-            : null
-          }
+          {games && <NumbersGenerator games={games}/>}
+          {userStats && <LastGenerated userStats={userStats}/>}
         </ScrollView>
       </GeneratorPage>
     );
   }
 }
 
-const mapStateToProps = ({ games, userProfile, loadingGames, loadingProfile }) => ({
+const mapStateToProps = ({
   games,
-  userProfile,
+  userStats,
   loadingGames,
-  loadingProfile
+  loadingStats
+}) => ({
+  games,
+  userStats,
+  loadingGames,
+  loadingStats
 });
 
 const mapDispatchToProps = {
   getGameList,
-  getUserProfile
+  getUserStats
 };
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  withTheme
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Generator);

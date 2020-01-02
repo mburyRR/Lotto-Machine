@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
-import rootReducer from '../store/reducer';
+import { rootReducer } from './reducer';
 
 /**
  * |temp|  'baseURL' - IP adress (IPv4) of your computer
@@ -12,7 +12,7 @@ import rootReducer from '../store/reducer';
  *  it's needed to access to the server via computer IP Address, not 'localhost')
  */
 const client = axios.create({
-    baseURL: 'xyz',
+    baseURL: '<url>',
     responseType: 'json'
 });
 

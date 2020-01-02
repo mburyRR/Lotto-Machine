@@ -4,6 +4,8 @@ import { withTheme } from 'react-native-elements';
 import { Bars } from 'react-native-loader';
 import styled from 'styled-components';
 
+import { Theme } from '../../common/types';
+
 
 const LoaderElement = styled(View)`
     flex: 1;
@@ -13,10 +15,12 @@ const LoaderElement = styled(View)`
     color: #000;
 `;
 
-const Animation = styled(Bars).attrs({
+const Animation = styled(Bars).attrs(
+    ({theme}: Theme) => ({
     color: theme.color.primary,
     size: 19
-})``;
+    })
+)``;
 
 
 const Loader = () => (

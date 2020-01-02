@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
-import TabBar from './tab-bar/TabBar.js';
-import StartPage from '../pages/start-page/StartPage';
+import TabBar from './tab-bar/TabBar';
+import StartPage from '../containers/start-page/StartPage';
 
 /**
  * createStackNavigator:

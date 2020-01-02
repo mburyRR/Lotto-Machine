@@ -2,10 +2,11 @@ import React from 'react';
 import { withTheme, ListItem } from 'react-native-elements';
 import styled from 'styled-components';
 
+import { Games } from '../../common/types';
 import TextFilter from '../../utils/TextFilter';
 
 
-const Game = styled(ListItem).attrs({
+const SimpleGame = styled(ListItem).attrs({
   containerStyle: {
 
   },
@@ -15,13 +16,17 @@ const Game = styled(ListItem).attrs({
 })``;
 
 
-const GameList = ({ games }) => (
-  games.map(item => 
-    <Game
-      key={item}
-      title={TextFilter(item, 'string')}
-    />
-  )
+const GameList: React.FC<Games> = ({
+  games
+}) => (
+  <>
+    {games.map(item => 
+      <SimpleGame
+        key={item}
+        title={TextFilter(item, 'string')}
+      />
+    )}
+  </>
 );
 
 export default withTheme(GameList);
